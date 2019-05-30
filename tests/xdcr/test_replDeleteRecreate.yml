@@ -72,9 +72,10 @@
 #============ apply filter to xdcr replications ============
 -
    image: sequoiatools/couchbase-cli
-   command: "xdcr-replicate -c {{.Orchestrator}}:{{.RestPort}} --settings --filter-expression REGEXP_CONTAINS(META().id, ''0$'')
+   command: >
+    xdcr-replicate -c {{.Orchestrator}}:{{.RestPort}} --settings --filter-expression REGEXP_CONTAINS(META().id, '0$')
                             -u {{.RestUsername}} -p {{.RestPassword}}
-                            --xdcr-replicator={{(index (.AllLogs `ReplId` | json) 0).uuid }}/default/{{.Bucket}}"
+                            --xdcr-replicator={{(index (.AllLogs `ReplId` | json) 0).uuid }}/default/{{.Bucket}}
 
 #============ swap add back ============
 -
