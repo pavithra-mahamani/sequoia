@@ -148,11 +148,12 @@
 
 #============ clear filter from xdcr replications ============
 -
-  image: sequoiatools/couchbase-cli
-  command: "xdcr-replicate -c {{.Orchestrator}}:{{.RestPort}} --settings --filter-expression ''''
-                           -u {{.RestUsername}} -p {{.RestPassword}}
-                           --xdcr-replicator={{(index (.AllLogs `ReplId` | json) 0).uuid }}/default/{{.Bucket}}"
-
+   image: sequoiatools/couchbase-cli
+   command: >
+    xdcr-replicate -c {{.Orchestrator}}:{{.RestPort}} --settings --filter-expression ''
+                            -u {{.RestUsername}} -p {{.RestPassword}}
+                            --xdcr-replicator={{(index (.AllLogs `ReplId` | json) 0).uuid }}/default/{{.Bucket}}
+                            
 #============ delete xdcr replications ============
 -
    image: sequoiatools/couchbase-cli
