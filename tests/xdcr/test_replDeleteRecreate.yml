@@ -22,6 +22,7 @@
    command: "xdcr-replicate -c {{.Orchestrator}}:{{.RestPort}}
         --create
         --xdcr-cluster-name remote
+        --filter-expression REGEXP_CONTAINS(META().id, '^1')
         --xdcr-from-bucket {{.Bucket}}
         --xdcr-to-bucket {{.Nodes | .Cluster 1 | bucket 0}}"
    wait: true
